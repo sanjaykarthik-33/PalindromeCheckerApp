@@ -2,31 +2,24 @@ public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
-        // UC1 — Welcome Message
-        System.out.println("=================================");
-        System.out.println("     PALINDROME CHECKER APP      ");
-        System.out.println("=================================");
-        System.out.println("Version : 1.0.0");
-        System.out.println("Welcome to the Palindrome Checker Application!");
-        System.out.println("Program ready...\n");
+        // UC6 — User Input Palindrome
+        java.util.Scanner scanner = new java.util.Scanner(System.in);
 
-        // UC4 — Character Array Based Palindrome
-        String word = "level";
-        char[] chars = word.toCharArray();
+        System.out.print("Enter a word: ");
+        String userWord = scanner.nextLine();
 
-        boolean isPalindrome = true;
+        String reversedUC6 = "";
 
-        for (int i = 0; i < chars.length / 2; i++) {
-            if (chars[i] != chars[chars.length - 1 - i]) {
-                isPalindrome = false;
-                break;
-            }
+// Reverse the input
+        for (int i = userWord.length() - 1; i >= 0; i--) {
+            reversedUC6 += userWord.charAt(i);
         }
 
-        if (isPalindrome) {
-            System.out.println(word + " is a Palindrome");
+// Check palindrome
+        if (userWord.equalsIgnoreCase(reversedUC6)) {
+            System.out.println(userWord + " is a Palindrome (User Input)");
         } else {
-            System.out.println(word + " is NOT a Palindrome");
+            System.out.println(userWord + " is NOT a Palindrome (User Input)");
         }
     }
 }
