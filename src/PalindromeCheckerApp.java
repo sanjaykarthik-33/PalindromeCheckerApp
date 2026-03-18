@@ -1,25 +1,30 @@
-public class PalindromeCheckerApp {
+public class UC10_CaseInsensitiveCheck {
+
+    public static boolean isPalindrome(String input) {
+
+        // Remove spaces & convert to lowercase
+        String cleaned = input.replaceAll("\\s+", "").toLowerCase();
+
+        int left = 0;
+        int right = cleaned.length() - 1;
+
+        while (left < right) {
+            if (cleaned.charAt(left) != cleaned.charAt(right))
+                return false;
+            left++;
+            right--;
+        }
+
+        return true;
+    }
 
     public static void main(String[] args) {
 
-        // UC6 — User Input Palindrome
-        java.util.Scanner scanner = new java.util.Scanner(System.in);
+        String text = "A man a plan a canal Panama";
 
-        System.out.print("Enter a word: ");
-        String userWord = scanner.nextLine();
+        boolean result = isPalindrome(text);
 
-        String reversedUC6 = "";
-
-// Reverse the input
-        for (int i = userWord.length() - 1; i >= 0; i--) {
-            reversedUC6 += userWord.charAt(i);
-        }
-
-// Check palindrome
-        if (userWord.equalsIgnoreCase(reversedUC6)) {
-            System.out.println(userWord + " is a Palindrome (User Input)");
-        } else {
-            System.out.println(userWord + " is NOT a Palindrome (User Input)");
-        }
+        System.out.println("\"" + text + "\"" +
+                (result ? " is Palindrome" : " is NOT Palindrome"));
     }
 }
