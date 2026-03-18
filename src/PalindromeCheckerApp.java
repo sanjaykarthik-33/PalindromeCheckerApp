@@ -1,21 +1,15 @@
-// ===== UC12 — Strategy Pattern =====
+import java.util.*;
 
-// Strategy Interface
-interface PalindromeStrategy {
-    boolean check(String input);
-}
+public class PalindromeCheckerApp {
 
-// Strategy 1 — Reverse String Method
-static class ReverseStrategy implements PalindromeStrategy {
-    public boolean check(String input) {
+    // Reverse Method
+    public static boolean reverseMethod(String input) {
         String reversed = new StringBuilder(input).reverse().toString();
         return input.equalsIgnoreCase(reversed);
     }
-}
 
-// Strategy 2 — Two Pointer Method
-static class TwoPointerStrategy implements PalindromeStrategy {
-    public boolean check(String input) {
+    // Two Pointer Method
+    public static boolean twoPointerMethod(String input) {
 
         input = input.toLowerCase();
         int left = 0;
@@ -28,5 +22,24 @@ static class TwoPointerStrategy implements PalindromeStrategy {
             right--;
         }
         return true;
+    }
+
+    // ===== UC13 MAIN METHOD =====
+    public static void main(String[] args) {
+
+        String word = "racecar";
+
+        // Reverse Method Time
+        long start1 = System.nanoTime();
+        reverseMethod(word);
+        long end1 = System.nanoTime();
+
+        // Two Pointer Method Time
+        long start2 = System.nanoTime();
+        twoPointerMethod(word);
+        long end2 = System.nanoTime();
+
+        System.out.println("Reverse Method Time: " + (end1 - start1) + " ns");
+        System.out.println("Two Pointer Method Time: " + (end2 - start2) + " ns");
     }
 }
