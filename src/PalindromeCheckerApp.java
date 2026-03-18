@@ -1,25 +1,27 @@
-public class PalindromeCheckerApp {
+import java.util.*;
+
+public class UC7_DequeCheck {
 
     public static void main(String[] args) {
 
-        // UC6 — User Input Palindrome
-        java.util.Scanner scanner = new java.util.Scanner(System.in);
+        String word = "level";
+        Deque<Character> deque = new ArrayDeque<>();
 
-        System.out.print("Enter a word: ");
-        String userWord = scanner.nextLine();
-
-        String reversedUC6 = "";
-
-// Reverse the input
-        for (int i = userWord.length() - 1; i >= 0; i--) {
-            reversedUC6 += userWord.charAt(i);
+        // Add characters to deque
+        for (char c : word.toCharArray()) {
+            deque.addLast(c);
         }
 
-// Check palindrome
-        if (userWord.equalsIgnoreCase(reversedUC6)) {
-            System.out.println(userWord + " is a Palindrome (User Input)");
-        } else {
-            System.out.println(userWord + " is NOT a Palindrome (User Input)");
+        boolean isPalindrome = true;
+
+        // Compare front and back
+        while (deque.size() > 1) {
+            if (!deque.removeFirst().equals(deque.removeLast())) {
+                isPalindrome = false;
+                break;
+            }
         }
+
+        System.out.println(word + (isPalindrome ? " is Palindrome" : " is NOT Palindrome"));
     }
 }
